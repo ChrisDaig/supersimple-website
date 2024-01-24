@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Market - Post Item for Sale</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #fff;
+            border-bottom: 2px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        .logo img {
+            max-height: 80px;
+            margin-left: 50px;
+        }
+
+        .search-bar {
+            flex: 1;
+            margin-right: 300px;
+            margin-left: 50px;
+        }
+
+        .container {
+            margin-top: 130px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .post-form {
+            width: 100%;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+
+        .post-form h2 {
+            text-align: left;
+            margin-bottom: 20px;
+            color: #333333;
+        }
+
+        .post-form label {
+            display: block;
+            margin-bottom: 40px;
+            color: #555;
+        }
+
+        .post-form input,
+        .post-form textarea,
+        .post-form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: border-color 0.3s;
+        }
+
+        .post-form input:focus,
+        .post-form textarea:focus,
+        .post-form select:focus {
+            border-color: #4CAF50;
+        }
+
+        .post-form button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .post-form button:hover {
+            background-color: #45a049;
+        }
+
+        #descriptionErrorMessage {
+            color: red;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="c:\Users\Chris\OneDrive\Desktop\open-market-high-resolution-logo-black-transparent (1).png" alt="Logo">
+    </div>
+    <div class="search-bar">
+        <input type="text" placeholder="Search...">
+    </div>
+
+    
+    
+    <header>
+        <div class="logo">
+            <img src="c:\Users\Chris\OneDrive\Desktop\open-market-high-resolution-logo-black-transparent (1).png" alt="Logo">
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+        </div>
+        <div class="user-buttons">
+            <button class="create-profile-button">Create Profile</button>
+            <button class="login-button">Login</button>
+        </div>
+    </header>
+
+
+
+</header>
+
+<div class="container">
+    <div class="post-form">
+        <h2>Post Item for Sale</h2>
+
+        <label for="itemName">Item Name:</label>
+        <input type="text" id="itemName" placeholder="Enter item name">
+
+        <label for="itemDescription">Item Description (100 words or less):</label>
+        <textarea id="itemDescription" placeholder="Enter item description" oninput="countWords(this, 100)" maxlength="500"></textarea>
+        <div id="descriptionErrorMessage"></div>
+
+        <label for="itemPrice">Price:</label>
+        <input type="text" id="itemPrice" placeholder="Enter item price">
+
+        <label for="category">Category:</label>
+        <select id="category">
+            <option value="electronics">Electronics</option>
+            <option value="clothing">Clothing</option>
+            <option value="furniture">Furniture</option>
+            <option value="sports">Sports</option>
+            <option value="tickets">Tickets</option>
+            <option value="general">General</option>
+            <option value="farm+garden">Farm+Garden</option>
+            <option value="auto">Auto</option>
+            <!-- Add more categories as needed -->
+        </select>
+
+        <label for="itemPhoto">Upload Photo:</label>
+        <input type="file" id="itemPhoto" accept="image/*">
+
+        <button onclick="submitPost()">Post Item</button>
+    </div>
+</div>
+
+<script>
+    function countWords(textarea, limit) {
+        const words = textarea.value.trim().split(/\s+/).length;
+        const errorMessage = document.getElementById('descriptionErrorMessage');
+
+        errorMessage.textContent = words > limit ? 'Description must be 100 words or less.' : '';
+    }
+
+    function submitPost() {
+        const itemName = document.getElementById('itemName').value;
+        const itemDescription = document.getElementById('itemDescription').value;
+        const itemPrice = document.getElementById('itemPrice').value;
+        const category = document.getElementById('category').value;
+        const itemPhoto = document.getElementById('itemPhoto').files[0];
+
+        // Validate description length
+        const words = itemDescription.trim().split(/\s+/).length;
+        if (words > 100) {
+            alert('Description must be 100 words or less.');
+            return;
+        }
+
+        // You can handle this data, for example, by sending it to the server
+        // or storing it in a database. In a real application, you would need a backend for this.
+        console.log('Item Name:', itemName);
+        console.log('Item Description:', itemDescription);
+        console.log('Item Price:', itemPrice);
+        console.log('Category:', category);
+        console.log('Item Photo:', itemPhoto ? itemPhoto.name : 'No photo selected');
+
+        // You can redirect to a confirmation page or take other actions as needed
+        alert('Item posted successfully!');
+    }
+</script>
+
+</body>
+</html>
